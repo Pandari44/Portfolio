@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Garaboina Pandari | Placement Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #EDF0F5;
+    --surface: #FFFFFF;
+    --ink: #14213D;
+    --muted: #52607A;
+    --line: #CBD3E1;
+    --accent: #F2A900;
+    --link: #0B6E69;
+    --badge: #14213D;
+    --badge-ink: #F4F6FB;
+    --badge-muted: #A9B4CC;
+    --ok: #3DDC97;
+    --display: "Bricolage Grotesque", "Segoe UI", Arial, sans-serif;
+    --body: "Figtree", "Segoe UI", Arial, sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0E1424; --surface: #161E33; --ink: #E8ECF5; --muted: #9AA7C2;
+      --line: #29334F; --accent: #F2B632; --link: #5EC9C1;
+      --badge: #1F2B4D; --badge-ink: #F4F6FB; --badge-muted: #A9B4CC;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E1424; --surface: #161E33; --ink: #E8ECF5; --muted: #9AA7C2;
+    --line: #29334F; --accent: #F2B632; --link: #5EC9C1;
+    --badge: #1F2B4D; --badge-ink: #F4F6FB; --badge-muted: #A9B4CC;
+  }
+  html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 72px); scroll-behavior: smooth; }
+  *, *::before, *::after { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--body); font-size: 1.0625rem; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--link); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* top bar */
+  .top {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+    background: var(--bg); border-bottom: 1px solid var(--line);
+  }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; }
+  .brand { font-family: var(--display); font-weight: 800; font-size: 1.15rem; color: var(--ink); text-decoration: none; white-space: nowrap; }
+  .top nav { display: flex; gap: 20px; overflow-x: auto; scrollbar-width: none; }
+  .top nav::-webkit-scrollbar { display: none; }
+  .top nav a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: .95rem; white-space: nowrap; }
+  .top nav a:hover { color: var(--ink); }
+
+  /* hero */
+  .hero { overflow: clip; padding-bottom: 72px; }
+  .hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 56px; align-items: start; }
+  .hero-copy { padding-top: 72px; }
+  h1 {
+    font-family: var(--display); font-weight: 800; letter-spacing: -0.035em;
+    font-size: clamp(2.8rem, 8vw, 5.6rem); line-height: .98; margin: 0 0 24px;
+  }
+  .pitch { font-size: 1.25rem; max-width: 34em; color: var(--muted); margin: 0 0 32px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; }
+  .btn {
+    display: inline-block; padding: 12px 22px; border-radius: 10px; font-weight: 600; text-decoration: none;
+    border: 2px solid var(--ink); font-size: 1rem;
+  }
+  .btn.primary { background: var(--ink); color: var(--bg); }
+  .btn.ghost { color: var(--ink); background: transparent; }
+  .btn:hover { transform: translateY(-1px); }
+  .quick { display: flex; flex-wrap: wrap; gap: 8px 24px; font-weight: 500; }
+
+  /* ID badge */
+  .lanyard-wrap { transform-origin: 50% 0; animation: swing 2.4s ease-out 1 both; transform: rotate(1.5deg); }
+  @keyframes swing {
+    0% { transform: rotate(-7deg); } 30% { transform: rotate(4.5deg); }
+    55% { transform: rotate(-2.5deg); } 80% { transform: rotate(1.8deg); } 100% { transform: rotate(1.5deg); }
+  }
+  .strap { width: 16px; height: 56px; margin: 0 auto; background: var(--accent); }
+  .badge {
+    background: var(--badge); color: var(--badge-ink); border-radius: 20px; padding: 28px 24px 0;
+    overflow: hidden; border: 1px solid rgba(255,255,255,.08); position: relative;
+    box-shadow: 0 18px 40px -18px rgba(10, 20, 50, .55);
+  }
+  .badge::before {
+    content: ""; position: absolute; top: 12px; left: 50%; width: 54px; height: 10px; margin-left: -27px;
+    border-radius: 6px; background: var(--bg);
+  }
+  .avatar {
+    width: 84px; height: 84px; border-radius: 50%; background: var(--accent); color: #14213D;
+    display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-size: 1.9rem;
+    margin: 14px 0 16px;
+  }
+  .badge h2 { font-family: var(--display); font-size: 1.45rem; margin: 0; line-height: 1.15; }
+  .badge .role { color: var(--badge-muted); font-size: .95rem; margin: 4px 0 18px; }
+  .badge dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; font-size: .95rem; }
+  .badge dt { color: var(--badge-muted); }
+  .badge dd { margin: 0; text-align: right; font-weight: 600; }
+  .status {
+    display: flex; align-items: center; gap: 10px; margin: 20px -24px 0; padding: 14px 24px;
+    background: var(--accent); color: #14213D; font-weight: 700; font-size: .95rem;
+  }
+  .status i { width: 10px; height: 10px; border-radius: 50%; background: #0B7A4B; box-shadow: 0 0 0 4px rgba(11,122,75,.22); }
+
+  /* sections */
+  section.block { border-top: 1px solid var(--line); padding: 64px 0; }
+  section.block .wrap { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 40px; }
+  h3.sec { font-family: var(--display); font-weight: 800; font-size: 1.9rem; letter-spacing: -0.02em; margin: 0; line-height: 1.1; }
+  .about p { margin: 0 0 1em; max-width: 38em; font-size: 1.125rem; }
+  .facts { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+  .fact { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; min-width: 130px; }
+  .fact b { display: block; font-family: var(--display); font-size: 1.6rem; line-height: 1.1; }
+  .fact span { color: var(--muted); font-size: .9rem; }
+
+  /* skills */
+  .skill-row { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 12px 24px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .skill-row:first-child { padding-top: 0; }
+  .skill-row h4 { margin: 0; font-size: 1rem; color: var(--muted); font-weight: 600; padding-top: 4px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; font-size: .95rem; font-weight: 500; }
+
+  /* projects */
+  .project { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 28px 0; border-bottom: 1px solid var(--line); }
+  .project:first-child { padding-top: 0; }
+  .project h4 { font-family: var(--display); font-size: 1.5rem; margin: 0; letter-spacing: -0.01em; }
+  .project p { margin: 0; max-width: 40em; }
+  .project .impact { color: var(--ink); font-weight: 600; }
+  .project .links { display: flex; gap: 20px; font-weight: 600; margin-top: 4px; }
+  .project .chips .chip { font-size: .85rem; padding: 2px 12px; background: transparent; }
+
+  /* timeline */
+  .tl { position: relative; padding-left: 28px; border-left: 2px solid var(--line); margin-left: 6px; }
+  .tl-item { position: relative; padding-bottom: 36px; }
+  .tl-item:last-child { padding-bottom: 0; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -37px; top: 8px; width: 14px; height: 14px; border-radius: 50%;
+    background: var(--accent); border: 3px solid var(--bg);
+  }
+  .tl-item h4 { margin: 0; font-size: 1.2rem; font-family: var(--display); }
+  .tl-item .meta { color: var(--muted); font-size: .95rem; margin: 2px 0 8px; }
+  .tl-item ul { margin: 0; padding-left: 1.1em; max-width: 40em; }
+  .tl-item li { margin-bottom: 4px; }
+
+  .list { list-style: none; margin: 0; padding: 0; }
+  .list li { padding: 12px 0 12px 22px; border-bottom: 1px solid var(--line); position: relative; max-width: 40em; }
+  .list li:first-child { padding-top: 0; }
+  .list li::before { content: ""; position: absolute; left: 0; top: 1.05em; width: 8px; height: 8px; background: var(--accent); border-radius: 2px; }
+  .list li:first-child::before { top: .5em; }
+
+  .contact p { font-size: 1.25rem; max-width: 30em; margin: 0 0 20px; }
+  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--muted); font-size: .9rem; }
+
+  @media (max-width: 860px) {
+    .hero .wrap { grid-template-columns: 1fr; gap: 32px; }
+    .hero-copy { padding-top: 48px; }
+    .lanyard-wrap { max-width: 320px; }
+    section.block .wrap { grid-template-columns: 1fr; gap: 24px; }
+    section.block { padding: 48px 0; }
+  }
+  @media (max-width: 560px) {
+    .skill-row { grid-template-columns: 1fr; gap: 8px; }
+    .top nav { gap: 16px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lanyard-wrap { animation: none; }
+    html { scroll-behavior: auto; }
+    .btn:hover { transform: none; }
+  }
+</style>
+</head>
+<body id="top">
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" id="brand"></a>
+    <nav aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <h1 id="name"></h1>
+        <p class="pitch" id="pitch"></p>
+        <div class="actions" id="actions"></div>
+        <div class="quick" id="quick"></div>
+      </div>
+      <div class="lanyard-wrap" aria-label="Student snapshot">
+        <div class="strap"></div>
+        <div class="badge">
+          <div class="avatar" id="avatar"></div>
+          <h2 id="badgeName"></h2>
+          <p class="role" id="badgeRole"></p>
+          <dl id="badgeFacts"></dl>
+          <div class="status"><i></i><span id="status"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block about" id="about">
+    <div class="wrap">
+      <h3 class="sec">About me</h3>
+      <div>
+        <div id="aboutText"></div>
+        <div class="facts" id="facts"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="projects">
+    <div class="wrap">
+      <h3 class="sec">Projects</h3>
+      <div id="projectList"></div>
+    </div>
+  </section>
+
+  <section class="block" id="skills">
+    <div class="wrap">
+      <h3 class="sec">Skills</h3>
+      <div id="skillList"></div>
+    </div>
+  </section>
+
+  <section class="block" id="experience">
+    <div class="wrap">
+      <h3 class="sec">Experience</h3>
+      <div class="tl" id="expList"></div>
+    </div>
+  </section>
+
+  <section class="block" id="education">
+    <div class="wrap">
+      <h3 class="sec">Education and certifications</h3>
+      <div>
+        <div class="tl" id="eduList" style="margin-bottom:40px"></div>
+        <ul class="list" id="achList"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="block contact" id="contact">
+    <div class="wrap">
+      <h3 class="sec">Contact</h3>
+      <div>
+        <p id="contactText"></p>
+        <div class="actions" id="contactActions"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap" id="footer"></div>
+</footer>
+
+<script>
+/* =========================================================
+   EDIT THIS BLOCK: everything on the page comes from here.
+   All content below is sample text. Replace it with yours.
+   ========================================================= */
+const P = {
+  name: "Garaboina Pandari",
+  role: "B.Tech, Computer Science (AI & ML)",
+  pitch: "B.Tech (AI & ML) student graduating in 2027 with 4 industry internships and strong Java skills. I build reliable backend services with Spring Boot, PostgreSQL and Redis, and I am looking for a Systems Engineer or Software Engineer role.",
+  status: "Open to placements 2027",
+
+  badge: {
+    "College": "Malla Reddy Engineering College and Management Sciences",
+    "Branch": "CSE (AI & ML)",
+    "CGPA": "7.5 / 10",
+    "Batch": "2023 to 2027",
+    "Location": "Medchal, Telangana"
+  },
+
+  links: {
+    email: "garaboinapandari@gmail.com",
+    github: "https://github.com/Pandari44",
+    linkedin: "https://www.linkedin.com/in/garaboinapandari-20b36633b",
+    resume: ""
+  },
+
+  about: [
+    "I am a final-year B.Tech student specialising in AI and Machine Learning, with a strong foundation in Java and backend development. I have completed four industry internships across Infosys Springboard, Vodafone VOIS, IBM SkillsBuild and Microsoft Azure.",
+    "Most recently, I built a shipment tracking platform with Java 17, Spring Boot, PostgreSQL and Redis during the Infosys Springboard Internship 7.0. I want to build reliable, scalable enterprise applications and keep learning from a strong engineering team."
+  ],
+  facts: [
+    { value: "7.5", label: "CGPA" },
+    { value: "4", label: "Industry internships" },
+    { value: "4", label: "Projects built" },
+    { value: "6", label: "Certifications" }
+  ],
+
+  projects: [
+    {
+      title: "Shipment Tracking and Delivery Visibility Platform",
+      summary: "Backend platform that stores and updates shipment and delivery status. Redis caching gives fast access to status data, and WebSocket pushes real-time updates to a front end built with HTML, CSS and JavaScript.",
+      impact: "",
+      stack: ["Java 17", "Spring Boot", "PostgreSQL", "Redis", "WebSocket"],
+      live: "",
+      code: ""
+    },
+    {
+      title: "Conversational Data Analysis with LLMs",
+      summary: "A conversational interface that lets users query and analyse data in plain language, powered by a large language model and prompt engineering.",
+      impact: "",
+      stack: ["Python", "LLM", "NLP"],
+      live: "",
+      code: ""
+    },
+    {
+      title: "Movie Review App",
+      summary: "Dynamic web app with search, rating and review features, using RESTful API integration to load movie data.",
+      impact: "",
+      stack: ["HTML", "CSS", "JavaScript", "REST API"],
+      live: "",
+      code: ""
+    },
+    {
+      title: "Data Analytics Major Project (VOIS-AICTE)",
+      summary: "Capstone project covering data cleaning, visualization and insight generation on real-world datasets.",
+      impact: "",
+      stack: ["Python", "Data Visualization"],
+      live: "",
+      code: ""
+    }
+  ],
+
+  skills: [
+    { label: "Languages", items: ["Java", "Python", "SQL", "JavaScript", "HTML", "CSS"] },
+    { label: "Core concepts", items: ["Object-Oriented Programming", "Data Structures and Algorithms", "DBMS", "REST APIs"] },
+    { label: "Backend and databases", items: ["Spring Boot", "PostgreSQL", "Redis", "WebSocket", "RESTful Web Services"] },
+    { label: "Cloud and AI", items: ["Microsoft Azure", "Google Cloud", "Generative AI", "LLMs", "NLP"] },
+    { label: "Data and web", items: ["Data Analytics", "Data Visualization", "Front-End Development", "Responsive Web Design"] },
+    { label: "Tools", items: ["Git", "GitHub"] }
+  ],
+
+  experience: [
+    {
+      role: "Java Technology Stack Intern",
+      org: "Infosys Springboard (Internship 7.0)",
+      period: "Jul 2026 to Sep 2026",
+      points: [
+        "Built backend services in Java 17 and Spring Boot with PostgreSQL to store and update shipment and delivery status.",
+        "Applied REST API design, database design and caching concepts while completing the project milestones for a shipment tracking platform."
+      ]
+    },
+    {
+      role: "Conversational Data Analysis Intern",
+      org: "Vodafone VOIS and Edunet Foundation (AICTE)",
+      period: "Sep 2025 to Oct 2025",
+      points: [
+        "Built an LLM-powered conversational data analysis solution as part of the AICTE-VOIS Tech University Engagement Program.",
+        "Applied prompt engineering to generate AI-driven insights from data."
+      ]
+    },
+    {
+      role: "Front-End Web Development Intern",
+      org: "Edunet Foundation and IBM SkillsBuild (AICTE)",
+      period: "Aug 2025 to Sep 2025",
+      points: [
+        "Completed a 6-week program building responsive web applications with HTML, CSS, JavaScript and modern frameworks."
+      ]
+    },
+    {
+      role: "AI Azure Intern",
+      org: "Microsoft and Edunet Foundation",
+      period: "May 2025 to Jun 2025",
+      points: [
+        "Built a Cat-Dog Image Classifier using machine learning and image processing on Microsoft Azure.",
+        "Applied data preprocessing, model training and deployment techniques within the Azure ecosystem."
+      ]
+    }
+  ],
+
+  education: [
+    { role: "B.Tech, Computer Science (AI & ML)", org: "Malla Reddy Engineering College and Management Sciences", period: "2023 to 2027 (expected)", points: ["CGPA: 7.5"] },
+    { role: "Intermediate", org: "TSMS", period: "Completed June 2023", points: ["Score: 745 / 1000"] },
+    { role: "SSC (Class X)", org: "TSMS", period: "Completed May 2021", points: ["CGPA: 10 / 10"] }
+  ],
+
+  achievements: [
+    "National Hackathon participant, NYXORA 2k26.",
+    "Programming using Java, Infosys Springboard (Dec 2025).",
+    "Introduction to Generative AI, Google Cloud on Coursera (Oct 2025).",
+    "Web Development Fundamentals, IBM SkillsBuild (Aug 2025).",
+    "Data Visualization and Python Basics, Vodafone VOIS (Oct 2025).",
+    "Data Analytics Job Simulation, Deloitte on Forage (Aug 2025).",
+    "GenAI Powered Data Analytics Simulation, TATA on Forage (Aug 2025)."
+  ],
+
+  contact: "I am open to Systems Engineer and Software Engineer roles. Email is the fastest way to reach me.",
+  updated: "October 2026"
+};
+/* ================= end of editable block ================= */
+
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text != null) e.textContent = text;
+  return e;
+}
+function link(href, text, cls) {
+  const a = el("a", cls, text);
+  a.href = href;
+  if (/^https?:/.test(href)) { a.target = "_blank"; a.rel = "noopener noreferrer"; }
+  return a;
+}
+const $ = (id) => document.getElementById(id);
+const initials = P.name.split(/\s+/).filter(Boolean).map(w => w[0]).slice(0, 2).join("").toUpperCase();
+
+document.title = P.name + " | Placement Portfolio";
+$("brand").textContent = P.name;
+$("name").textContent = P.name;
+$("pitch").textContent = P.pitch;
+$("avatar").textContent = initials;
+$("badgeName").textContent = P.name;
+$("badgeRole").textContent = P.role;
+$("status").textContent = P.status;
+
+for (const [k, v] of Object.entries(P.badge)) {
+  $("badgeFacts").append(el("dt", null, k), el("dd", null, v));
+}
+
+const L = P.links;
+const acts = $("actions");
+if (L.resume) acts.append(link(L.resume, "View resume", "btn primary"));
+acts.append(link("#projects", "See my projects", "btn ghost"));
+
+const quick = $("quick");
+if (L.github) quick.append(link(L.github, "GitHub"));
+if (L.linkedin) quick.append(link(L.linkedin, "LinkedIn"));
+if (L.email) quick.append(link("mailto:" + L.email, L.email));
+
+P.about.forEach(t => $("aboutText").append(el("p", null, t)));
+P.facts.forEach(f => {
+  const d = el("div", "fact");
+  d.append(el("b", null, f.value), el("span", null, f.label));
+  $("facts").append(d);
+});
+
+function chips(items) {
+  const c = el("div", "chips");
+  items.forEach(i => c.append(el("span", "chip", i)));
+  return c;
+}
+
+P.projects.forEach(p => {
+  const d = el("article", "project");
+  d.append(el("h4", null, p.title), el("p", null, p.summary));
+  if (p.impact) d.append(el("p", "impact", p.impact));
+  d.append(chips(p.stack));
+  const links = el("div", "links");
+  if (p.live) links.append(link(p.live, "Live demo"));
+  if (p.code) links.append(link(p.code, "Source code"));
+  if (links.children.length) d.append(links);
+  $("projectList").append(d);
+});
+
+P.skills.forEach(s => {
+  const r = el("div", "skill-row");
+  r.append(el("h4", null, s.label), chips(s.items));
+  $("skillList").append(r);
+});
+
+function timeline(target, items) {
+  items.forEach(x => {
+    const d = el("div", "tl-item");
+    d.append(el("h4", null, x.role), el("div", "meta", x.org + "  |  " + x.period));
+    if (x.points && x.points.length) {
+      const ul = el("ul");
+      x.points.forEach(t => ul.append(el("li", null, t)));
+      d.append(ul);
+    }
+    target.append(d);
+  });
+}
+timeline($("expList"), P.experience);
+timeline($("eduList"), P.education);
+P.achievements.forEach(a => $("achList").append(el("li", null, a)));
+
+$("contactText").textContent = P.contact;
+const ca = $("contactActions");
+if (L.email) ca.append(link("mailto:" + L.email, "Email me", "btn primary"));
+if (L.linkedin) ca.append(link(L.linkedin, "LinkedIn", "btn ghost"));
+if (L.github) ca.append(link(L.github, "GitHub", "btn ghost"));
+
+$("footer").textContent = P.name + ". Last updated " + P.updated + ".";
+</script>
+</body>
+</html>
